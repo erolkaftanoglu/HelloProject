@@ -1,4 +1,4 @@
-var express = require('express');
+svar express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -41,7 +41,7 @@ app.use(function(req, res, next) {
 app.get('*',function (req, res) {
     res.locals.message = 'Böyle bir alan bulunamadı.';
     res.locals.error = req.app.get('env') === 'development' ? err : {};
-    res.status(err.status || 404);
+    res.status(404);
     res.render('error');
 });
 
