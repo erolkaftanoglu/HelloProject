@@ -2,7 +2,7 @@
   "name": "hellojade",
   "version": "0.0.1",
   "author": "Erolkaftanoglu",
-  "private": false,
+  "private": true,
   "scripts": {
     "start": "node ./bin/www",
     "test": "./node_modules/jshint/bin/jshint hello.js"
@@ -12,10 +12,10 @@
   },
   "dependencies": {
     "body-parser": "~1.17.1",
+    "bootstrap-stylus": "^0.2.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",
     "express": "~4.15.2",
-    "jade": "~1.11.0",
     "morgan": "~1.8.1",
     "pug": "^2.0.0-beta.12",
     "serve-favicon": "~2.4.2",

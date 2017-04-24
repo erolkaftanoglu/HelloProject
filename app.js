@@ -1,10 +1,11 @@
-svar express = require('express');
+var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var stylus = require('stylus');
+var bootstrap = require('bootstrap-stylus'),
+    stylus = require('stylus');
 
 
 //routes
@@ -25,7 +26,10 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(stylus.middleware(path.join(__dirname, 'public')));
+app.use(stylus.middleware({
+  src: __dirname + '/public',
+  compile: compile
+}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
@@ -38,6 +42,12 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
+
+function compile(str, path) {
+  return stylus(str)
+    .set('filename', path)
+    .use(bootstrap());
+}
 
 app.get('*',function (req, res) {
     res.locals.message = 'Böyle bir alan bulunamadı.';
